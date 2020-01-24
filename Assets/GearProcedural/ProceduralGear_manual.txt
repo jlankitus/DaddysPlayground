@@ -1,0 +1,161 @@
+﻿Procedural Gear
+
+Installation:
+-------------
+Import the ´GearProcedural.package´ into your project: 
+
+ Menü ´Assets -> Import package -> Custom package...´ , choose the ´GearProcedura.package´ and import all of it,
+ or download it from Unity Asset Store and impot all files.
+
+
+How to use:
+-----------
+
+Create a procedural gear:
+
+	Click menu ´GameObject -> Create other -> Procedural Gear´
+
+A gear was created and you can change its parameters in the inspector or move the vertices (handles) in the scene view.
+
+Gear
+----
+
+If you want to have a more detailed gear or more detailed teeth, add some points by click the ´+´ button in the inspector at ´Body Parts´ or ´Teeth Parts´.
+You get a new point. It is a copy of the point, where you have clicked on ´+´.
+Move this new point around to fit your desired look.
+
+To move the vertices around, set the ´modul´ to value 0.5 (standard for new gears) and leave the scale at 1.
+Otherwise the handles are not exactly on the vertices.
+It is recommented to set the modul AFTER modelling the gear/teeth.
+Change the values by inspector works on every scale and modul.
+
+
+Materials
+---------
+You can add more materials to the ´Mesh Renderer´ by drag&drop a material from the project view into the inspector (to the Mesh Renderer compontent).
+In the Gear Inspector you see all materials of the Mesh Renderer.
+You can choose a material for each tooth or body part by clicking on the number button of each part.
+
+
+UV´s
+----
+
+By default the gear scipt is set to ´Automatic Mapping´.
+This means, gear-parts that are flat will be mapped planar and those who are over the ´Ramp Angle´ will be mapped cylindrical.
+You can change the ´Ramp Angle´ in the inspector.
+With this option you mostly get a good result.
+If you want to change the mapping or set an offset to the uv´s/texture or scale them, you also can do it in the inspector.
+For this uncheck the ´Automatic Mapping´ and you will see the parameters for each of your gear parts.
+
+
+GearDriver.cs
+-------------
+
+Add this script to a Procedural Gear to drive it.
+You also can add this script to a cylinder (or any other GameObject) to use it as a shaft.
+
+Gear Driver Options:
+
+[is Motor]
+This is the gear object that drives all other gears/shafts.
+
+[Motor speed]
+If "is Motor" is checked, you can see the "Motor speed" property.
+Here you set the speed of the motor. This is in rounds per minute.
+
+Use 'motorSpeedRPM' to set the speed of the motor gear from other scripts or playmaker 
+ during gameplay.
+
+ Read or Set by Script:
+  gd = (GearDriver)anotherGameObject.GetComponent(typeof(GearDriver));
+  gd.motorSpeedRPM = 15.0f;
+  float speed = gd.motorSpeedRPM;
+	
+ For Playmaker:
+  Add a FSM to the motor gear game object.
+  In a State create an Action -> Unity Object -> Set Property
+  As Target object select 'gear'.
+  As Property select 'motorSpeedRPM'
+  Then set a value for the speed or select another variable you stored in playmaker.
+
+[is Shaft]
+used to mark the object as a shaft.
+will be checked automaticly on start, if the game object has no "Procedural Gear" script attached.
+You can create a cylinder and add the gear driver script, then you have a shaft ready to work with
+the other gears.
+
+[Live Update]
+A gear marked as "is Motor" have the option "Live Update".
+If "Live Update" is checked, every change to the gears will affect the transmission in real time (every frame).
+
+[Update Speed Once]
+This Button is enabled if "Update Speed" is deactivated.
+With "Update Speed Once" you set your changes once, after you setup gears and speed.
+
+[Outputs connected]
+This is a list, where you add the connection to other gears or shafts.
+You set where the power is going to. Not where the power comes from.
+Drag and Drop the gears you want to drive from scene view onto this list.
+
+
+There are some public methods you can call from other scripts or playmaker to
+connect and disconnect gears at runtime:
+
+!!! connect/disconnect at runtime only works with "live update" on the motor gear has to be set true !!!
+
+
+
+- Connect a gear by its gearDriver script as reference
+
+    Call from other scripts: anotherGameObject.GetComponent<GearDriver>().ConnectGear(gearDriver);
+
+
+- Disconnects all gears from the "connected outputs" lists of this gear
+
+    Call from other scripts: anotherGameObject.GetComponent<GearDriver>().DisconnectAllGears();
+
+
+- Remove a gear from the "Connected Outputs" list (with the gearDriver script as reference)
+
+    Call from other scripts: anotherGameObject.GetComponent<GearDriver>().DisconnectGear(gearDriver);
+
+
+- Remove a gear from the "Connected Outputs" list of this gear by index
+
+    Call from other scripts: anotherGameObject.GetComponent<GearDriver>().DisconnectGearByIndex(5);
+
+
+- Disconnects this gear from the "Connected Outputs" lists of all other gears
+
+    Call from other scripts: anotherGameObject.GetComponent<GearDriver>().DisconnectFromAllOther();
+
+
+- Disconnects a gear from the connected output lists of all other gears by its name
+
+    Call from other scripts: GameObject.FindObjectOfType<GearDriver>().DisconnectFromAllByName("NameOfGearToDisconnect");
+
+
+- Connects a gear to another by their names
+
+    Call from other scripts: GameObject.Find("gearThatDrives").GetComponent<GearDriver>().ConnectGearByName("GearToConnect");
+
+- Disconnects a gear from another by their names
+
+     Call from other scripts: GameObject.Find("gearThatDrives").GetComponent<GearDriver>().DisconnectGearByName("GearToDisconnect");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
