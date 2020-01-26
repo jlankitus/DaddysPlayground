@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: steel
-  m_Shader: {fileID: 7, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: c5759ef2701d54af0a43b0a39abfb4c7, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -23,6 +23,20 @@ Material:
         m_Texture: {fileID: 2800000, guid: f39519387c0e07a4b8fdccf062e99715, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Floats: []
+    - _myBump:
+        m_Texture: {fileID: 2800000, guid: 25cff2db4b93f49deb769cdf05cbd502, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _myCube:
+        m_Texture: {fileID: 8900000, guid: 1369ccb1c34454cc2967c59f41afb9ca, type: 3}
+        m_Scale: {x: 12.6, y: 2.63}
+        m_Offset: {x: 0, y: 0}
+    - _myDiffuse:
+        m_Texture: {fileID: 2800000, guid: 25cff2db4b93f49deb769cdf05cbd502, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _myBright: 0.71
+    - _mySlider: 2.28
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

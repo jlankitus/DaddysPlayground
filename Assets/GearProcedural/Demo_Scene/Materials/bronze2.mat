@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: bronze2
-  m_Shader: {fileID: 7, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: c5759ef2701d54af0a43b0a39abfb4c7, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -23,6 +23,20 @@ Material:
         m_Texture: {fileID: 2800000, guid: 15e4c9f288090da4ca0f31ca677e65c3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Floats: []
+    - _myBump:
+        m_Texture: {fileID: 2800000, guid: 6d9260ba75c944722ab4cd1c013e9b35, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _myCube:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 2.44, y: 2.5}
+        m_Offset: {x: 0, y: 0}
+    - _myDiffuse:
+        m_Texture: {fileID: 2800000, guid: ec4e8e51e4d134dde82c055300b5340b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _myBright: 1.38
+    - _mySlider: 0.66
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
